@@ -1,0 +1,119 @@
+@import "../../../css-config/mixins.scss";
+
+.login-banner {
+    padding: 40px 0;
+    position: relative;
+    background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+    @include md {
+        height: calc(100vh - 80px);
+    }
+    .login-content {
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column-reverse;
+        max-width: calc(100% - 20px);
+        margin: 0 auto;
+        position: relative;
+        @include md {
+            flex-direction: row;
+            max-width: 1200px;
+        }
+        .banner-img {
+            position: relative;
+            z-index: 9;
+            width: 200px;
+            margin-bottom: 20px;
+            @include md {
+                width: 500px;
+                margin-right: 60px;
+                margin-top: 50px;
+                margin-bottom: 0;
+            }
+            @include xxl {
+                width: 600px;
+                margin-right: 0;
+                margin-top: 0;
+            }
+        }
+        .login-container {
+            padding: 50px;
+
+            .login-h1 {
+                text-transform: uppercase;
+
+                h1 {
+                    font-weight: 500;
+                    font-size: 1.75rem;
+                    color: white;
+                }
+            }
+
+            .login-form {
+                margin: 50px auto 10px;
+                padding: 20px;
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, 1fr);
+                gap: 15px;
+                width: 100%;
+                justify-content: left;
+                align-items: center;
+
+                .input {
+                    width: 90%;
+                    // border: 1px solid #e6e6e667;
+                    input{
+                        color: white;
+                    }
+                }
+
+                .name-div {
+                    label {
+                        font-size: 1rem;
+                        color: #e6e6e6;
+                    }
+                }
+
+                .login-btn-div {
+                    grid-area: 3/1/4/2;
+
+                    #login-btn {
+                        cursor: pointer;
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: white;
+                        // background: white;
+                        border: 1px solid white;
+
+                        &:hover {
+                            border-bottom: 2px solid white;
+                            text-shadow: 0 0 2px white;
+                        }
+                    }
+                }
+
+                .login-navigation-div {
+                    grid-area: 4/1/5/2;
+                    span{
+                        color: white;
+                    }
+                    #toSignup-btn {
+                        margin-left: 15px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        color: #e6e6e6;
+                        font-weight: 500;
+
+                        &:hover {
+                            border-bottom: 2px solid #e6e6e6;
+                            text-shadow: 0 0 1px white;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

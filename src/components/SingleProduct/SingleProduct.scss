@@ -1,0 +1,37 @@
+@import "../../css-config/mixins.scss";
+.single-product-main-content {
+    margin: 20px 0;
+    @include md {
+        margin: 75px 0;
+    }
+    .layout {
+        max-width: calc(100% - 20px);
+        margin: 0 auto;
+        @include md {
+            max-width: 1200px;
+        }
+        .single-product-page {
+            display: flex;
+            flex-direction: column;
+            @include md {
+                flex-direction: row;
+            }
+            .left {
+                width: 100%;
+                flex-shrink: 0;
+                @include md {
+                    max-width: 500px;
+                }
+            }
+            .right {
+                display: flex;
+                flex-direction: column;
+                padding-top: 20px;
+                @include md {
+                    width: 700px;
+                    padding: 0 35px;
+                }
+            }
+        }
+    }
+}

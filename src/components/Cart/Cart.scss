@@ -1,0 +1,94 @@
+@import "../../css-config/mixins.scss";
+
+.cart-header{
+    border-bottom: 1px solid #6b6b6b;
+    border-top: 1px solid #6b6b6b;
+    padding: 0 10px;
+    margin: 40px 50px 0;
+    max-width: 1200px;
+    @include lg{
+        margin: 40px auto 0;
+    }
+
+    .cart-heading{
+        font-size: 2.2rem;
+        font-weight: 100;
+        font-family: "Cabin", sans-serif;
+        line-height: 2;
+    }
+}
+
+.cart-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 0 10px;
+    max-width: calc(100%);
+    margin: 0 50px;
+    @include lg {
+        flex-direction: row;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .cart-content {
+        width: 100%;
+        height: 100%;
+        background: white;
+        display: flex;
+        flex-direction: column;
+
+        .cart-item-box-footer{
+            display: flex;
+            justify-content: flex-end;
+            font-size: 22px;
+            font-weight: 100;
+            margin: 20px 0 0;
+        }
+    }
+
+    .cart-summary{
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        flex-shrink: 0;
+        margin-top: 20px;
+        text-align: center;
+        overscroll-behavior: contain;
+
+        @include md {
+            max-width: 325px;
+            margin-top: 50px;
+        }
+        
+        .summary-header{
+            padding: 20px;
+        }
+
+        .details{
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .row{
+                display: flex;
+                justify-content: space-between;
+
+                .green{
+                    color: #188d18;
+                }
+            }
+        }
+
+        #buy-btn{
+            background-color: rgba(251, 102, 27, 0.8549019608);
+            color: white;
+            font-weight: 900;
+            border-radius: 2px;
+            border: 1px solid rgba(251, 102, 27, 0.8549019608);
+            margin: 20px auto;
+            
+        }
+    }
+}
+

@@ -1,0 +1,235 @@
+@import "../../../css-config/mixins.scss";
+
+.details-container {
+    .name-and-desc {
+        .name {
+            font-size: 18px;
+            line-height: 28px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0;
+
+            @include md {
+                font-size: 22px;
+                line-height: 32px;
+                margin-bottom: 10px;
+            }
+        }
+
+        .desc {
+            line-height: 20px;
+            margin-bottom: 10px;
+            
+            display: grid;
+            grid-template-columns: 1fr 5fr;
+
+            @include md {
+                font-size: 18px;
+                line-height: 24px;
+                margin-bottom: 10px;
+            }
+
+            .desc-title{
+                font-size: 16px;
+                color: #6b6b6b;
+            }
+            .desc-description{
+                font-size: 16px;
+                font-weight: lighter;
+            }
+        }
+    }
+
+
+    .rate-rating-and-reviews {
+        display: grid;
+        align-items: center;
+        gap: 10px;
+        grid-template-columns: 1fr 15fr;
+        margin-bottom: 20px;
+        .rates {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1cab1c;
+            color: white;
+            border-radius: 4px;
+            font-size: 13px;
+            padding: 0px 5px 0px 2px;
+
+            svg {
+                width: 0.75em;
+                height: 0.75em;
+            }
+        }
+
+        .ratings-and-reviews {
+            height: 100%;
+            font-size: 0.85rem;
+            color: #9f9f9f;
+        }
+    }
+
+    .prices-div {
+        line-height: 32px;
+        margin-bottom: 20px;
+        display: flex;
+
+        .price{
+            font-size: 20px;
+            margin-right: 7.5px;
+            @include md{
+                font-size: 26px;
+            }
+        }
+        .original-price{
+            color: #6b6b6b;
+            font-size: 16px;
+            margin-left: 7.5px;
+        }
+        .discount{
+            color: #188d18;
+            font-size: 16px;
+            margin-left: 7.5px;
+            font-weight: 600;
+        }
+    }
+
+    .offers-container{
+        margin: 30px auto;
+        span{
+            font-weight: 500;
+        }
+        .offers-box{
+            margin: 10px auto 20px;
+            .offer{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: 5px;
+                span{
+                    margin-left: 20px;
+                    font-weight: 100;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .description-box{
+        margin-top: 40px;
+    }
+
+    .delivery-details{
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        .delivery-details-title{
+            font-size: 16px;
+            color: #6b6b6b;
+        }
+        .delivery-check-box{
+            width: fit-content;
+            border-bottom: 2px solid #8e2de2;
+            padding: 0px 5px;
+            .pincode-check{
+                border: none;
+                outline: none;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: none;
+            }
+            #pincode-check-button{
+                background-color: transparent;
+                color: #8e2de2;
+                border: none;
+                font-size: 18px;
+                font-weight: 500;
+                margin-left: 5px;
+            }
+        }
+        .pincode-check-verdict{
+            margin-top: 5px;
+            grid-area: 2/2/3/3;
+            font-size: 15px;
+            .delivery-cost{
+                color: #1cab1cc7;
+            }
+        }
+
+    }
+
+    .seller-details-box{
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        .seller-details-box-title{
+            font-size: 16px;
+            color: #6b6b6b;
+        }
+        .seller-name-and-star{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            .seller-name{
+                margin-right: 5px;
+            }
+            .seller-stars{
+                background-color: #8e2de2;
+                padding: 1px 5px 1px 2px;
+                color: white;
+                border-radius: 3px;
+                margin-left: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                svg {
+                    width: 0.85em;
+                    height: 0.85em;
+                }
+            }
+        }
+        .payment-return-and-replacement-details{
+            margin-top: 15px;
+            grid-area: 2/2/3/3;
+            li{
+                color: #8b8b8b;
+                font-size: 1.25rem;
+                div{
+                    display: inline-block;
+                    color: black;
+                    font-size: 16px;
+                    font-weight: lighter;
+                    padding: 2.5px;
+                }
+            }
+        }
+    }
+
+    .about-item-box{
+        .about-box-title{
+            font-size: 1.25rem;
+            line-height: 40px;
+        }
+        .about-box-description{
+            font-size: 0.95rem;
+            padding: 5px 15px;
+            font-weight: lighter;
+        }
+    }
+
+    .specification-container{
+        .specification-box-title{
+            font-size: 1.25rem;
+            line-height: 40px;
+        }
+        
+    }
+
+    .divider {
+        margin: 20px 0;
+        height: 1px;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
