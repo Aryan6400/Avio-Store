@@ -4,11 +4,12 @@ import MuiTextField from '@mui/material/TextField';
 import "./SignUp.scss";
 import { useNavigate } from "react-router-dom";
 import BannerImg from "../../../assets/banner-img.png";
-const root = "http://localhost:3000";
+import { useAuth } from "../../../context/AuthContext";
 
 
 const SignUp = () => {
     const navigate = useNavigate();
+    const {setAuth} = useAuth();
     const [user, setUser] = useState({
         username: "",
         email: "",
@@ -28,8 +29,9 @@ const SignUp = () => {
 
     function submitForm(event) {
         localStorage.setItem("User", JSON.stringify(user));
+        setAuth(true);
         event.preventDefault();
-        window.location.href = root;
+        navigate('/');
     }
 
 

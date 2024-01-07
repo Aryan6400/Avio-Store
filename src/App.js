@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
+import { useEffect } from "react";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -12,16 +13,22 @@ import Login from "./components/Auth/Login/Login";
 import Cart from "./components/Cart/Cart";
 import About from "./components/About/About";
 import PrivateComponent from "./components/PrivateComponent";
-// import AppContext from "./utils/context";
+import { useAuth } from "./context/AuthContext";
 
 function App() {
+    const {setAuth} = useAuth();
+    useEffect(()=>{
+        const auth1 = localStorage.getItem("User");
+        if(auth1) setAuth(true);
+        else setAuth(false);
+    }, [])
+
     return (
         <BrowserRouter>
 
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
-                {/* <Route path="/about" element={<div>About Page</div>} /> */}
                 <Route path="/category/:id" element={<Category />} />
                 <Route path="/product/:id" element={<SingleProduct />} />
                 <Route path="/signup" element={<SignUp />} />

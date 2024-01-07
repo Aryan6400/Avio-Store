@@ -4,11 +4,13 @@ import MuiTextField from '@mui/material/TextField';
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
 import BannerImg from "../../../assets/banner-img.png";
+import { useAuth } from "../../../context/AuthContext";
 const root = "http://localhost:3000";
 
 
 const Login = () => {
     const navigate = useNavigate();
+    const {setAuth} = useAuth();
     const [user, setUser] = useState({
         username: "",
         password: "",
@@ -26,8 +28,9 @@ const Login = () => {
 
     function submitForm(event) {
         localStorage.setItem("User", JSON.stringify(user));
+        setAuth(true);
         event.preventDefault();
-        window.location.href = root;
+        navigate('/');
     }
 
 

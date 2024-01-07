@@ -5,14 +5,13 @@ import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
 import "./Header.scss";
+import { useAuth } from "../../context/AuthContext";
 import Search from "./Search/Search";
-import Cart from "../Cart/Cart";
-const root = "http://localhost:3000";
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const [searchModal, setSearchModal] = useState(false);
-    const [isLogin, setLogin] = useState(null);
+    const {auth, setAuth} = useAuth();
     const navigate = useNavigate();
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -25,15 +24,12 @@ const Header = () => {
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
-        const auth = localStorage.getItem("User");
-        if(auth) setLogin(true);
-        else setLogin(false);
     }, []);
 
     const logout = () => {
         localStorage.clear();
-        setLogin(false);
-        window.location.href = root;
+        setAuth(false);
+        navigate('/login');
     }
 
     return (
@@ -61,13 +57,12 @@ const Header = () => {
                             <CgShoppingCart onClick={() => navigate("/cart")}/>
 
                         </span>
-                        {!isLogin && <Button id="header-signup-btn" onClick={() => navigate("/signup")}>SignUp</Button>}
-                        {isLogin && <Button id="header-logout-btn" onClick={logout}>Logout</Button>}
+                        {!auth && <Button id="header-signup-btn" onClick={() => navigate("/signup")}>SignUp</Button>}
+                        {auth && <Button id="header-logout-btn" onClick={logout}>Logout</Button>}
                     </div>
                 </div>
             </header>
             {searchModal && <Search setSearchModal={setSearchModal} />}
-            {/* {<Cart />} */}
         </>
     );
 };
