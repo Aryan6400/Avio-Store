@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Paper } from "@mui/material";
 import "./Product.scss";
 
-const Product = ({ data, id }) => {
+const Product = ({ data }) => {
     const navigate = useNavigate();
     return (
         <Paper
             className="product-card"
-            onClick={() => navigate("/product/" + id)}
+            onClick={() => navigate("/product/" + data._id)}
         >
             <div className="thumbnail">
                 <img

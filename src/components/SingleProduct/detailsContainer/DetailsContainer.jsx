@@ -5,34 +5,32 @@ import "./DetailsContainer.scss";
 
 
 const DetailsContainer = ({ data }) => {
-    let discount = String((1 - (Number(data.attributes.price) / Number(data.attributes.originalPrice))) * 100);
+    let discount = String((1 - (Number(data.price) / Number(data.originalPrice))) * 100);
     const [pincode, setPincode] = useState("");
-    const [delivery, setDelivery] = useState(false);
-    console.log(discount);
     return (
         <div className="details-container">
             <div className="name-and-desc">
                 <div className="name">
-                    {data.attributes.title} lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter
+                    {data.title}
                 </div>
             </div>
 
             <div className="rate-rating-and-reviews">
                 <div className="rates">
                     <StarIcon fontSize="small" />
-                    <div>{data.attributes.rate}</div>
+                    <div>{data.rate}</div>
                 </div>
                 <div className="ratings-and-reviews">
-                    {data.attributes.ratings} ratings and {data.attributes.reviews} reviews
+                    {data.ratings} ratings and {data.reviews} reviews
                 </div>
             </div>
 
             <div className="prices-div">
                 <div className="price">
-                    ₹{data.attributes.price}
+                    ₹{data.price}
                 </div>
                 <div className="original-price">
-                    <s>₹{data.attributes.originalPrice}</s>
+                    <s>₹{data.originalPrice}</s>
                 </div>
                 <div className="discount">
                     {discount != "0" ?
@@ -45,7 +43,7 @@ const DetailsContainer = ({ data }) => {
             <div className="offers-container">
                 <span>Available offers</span>
                 <div className="offers-box">
-                    {data.attributes.offer.map(item => {
+                    {data.offer.map(item => {
                         return (
                             <div className="offer">
                                 <LocalOfferIcon style={{ color: "green" }} />
@@ -64,10 +62,10 @@ const DetailsContainer = ({ data }) => {
                 </div>
                 <div className="pincode-check-verdict">
                     {
-                        delivery ?
-                            <span className="delivery-cost" onClick={() => { setDelivery(prev => !prev) }}>₹40 </span>
+                        data.deliveryCharges!=0 ?
+                            <span className="delivery-cost">₹{data.deliveryCharges} </span>
                             :
-                            <span className="delivery-cost" onClick={() => { setDelivery(prev => !prev) }}>Free Delivery </span>
+                            <span className="delivery-cost">Free Delivery </span>
                     }
                     <span style={{ color: "silver" }}>| </span>
                     12 July, Friday
@@ -77,17 +75,17 @@ const DetailsContainer = ({ data }) => {
             <div className="name-and-desc description-box">
                 <div className="desc">
                     <div className="desc-title">Description: </div>
-                    <div className="desc-description">{data.attributes.shortDescription} lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter<br />lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter</div>
+                    <div className="desc-description">{data.shortDescription}</div>
                 </div>
             </div>
 
             <div className="seller-details-box">
                 <div className="seller-details-box-title">Seller: </div>
                 <div className="seller-name-and-star">
-                    <div className="seller-name">ProEnt</div>
+                    <div className="seller-name">{data.seller}</div>
                     <div className="seller-stars">
                         <StarIcon fontSize="small" />
-                        <div>4.2</div>
+                        <div>{data.rate}</div>
                     </div>
                 </div>
                 <div className="payment-return-and-replacement-details">
@@ -102,7 +100,7 @@ const DetailsContainer = ({ data }) => {
 
             <div className="about-item-box">
                 <div className="about-box-title">About Item </div>
-                <div className="about-box-description">{data.attributes.shortDescription} lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter<br />lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter<br />{data.attributes.shortDescription}<br/>{data.attributes.shortDescription} lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter<br />lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter<br />{data.attributes.shortDescription}</div>
+                <div className="about-box-description">{data.shortDescription} lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter<br />lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter<br />{data.shortDescription}<br/>{data.shortDescription} lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter<br />lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter lorem ipsum dolor sit amet lorem ipsum dolor sit amet consecuter<br />{data.shortDescription}</div>
             </div>
             <hr className="divider" />
 

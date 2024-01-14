@@ -25,6 +25,16 @@
             }
         }
     }
+    .react-multiple-carousel__arrow {
+        min-width: 20px;
+        min-height: 60px;
+    }
+    .react-multiple-carousel__arrow--right {
+        right: 0;
+    }
+    .react-multiple-carousel__arrow--left  {
+        left: 0;
+    }
     .products {
         display: flex;
         flex-flow: wrap;

@@ -9,12 +9,12 @@ import { useAuth } from "../../../context/AuthContext";
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const {setAuth} = useAuth();
+    const { setAuth } = useAuth();
     const [user, setUser] = useState({
+        name: "",
         username: "",
-        email: "",
         password: "",
-        Mob: "",
+        mob: "",
     })
 
     function handleChange(event) {
@@ -27,11 +27,44 @@ const SignUp = () => {
         })
     }
 
-    function submitForm(event) {
-        localStorage.setItem("User", JSON.stringify(user));
-        setAuth(true);
-        event.preventDefault();
-        navigate('/');
+    const submitForm = async() => {
+        if (user.name == "" || user.username == "" || user.password == "" || user.mob == "") {
+            alert("Please fill all the fields!!");
+            return;
+        }
+        try {
+            const response = await fetch('https://avio-backend.onrender.com/register', {
+                method: "POST",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                redirect: "follow",
+                referrerPolicy: "no-referrer",
+                body: JSON.stringify(user),
+            });
+            const result = await response.json();
+
+            if (result.user) {
+                const currentTimestamp = new Date();
+                const isoString = currentTimestamp.toISOString();
+                localStorage.setItem("User", JSON.stringify(result));
+                localStorage.setItem("timestamp", JSON.stringify(isoString));
+                setAuth(true);
+                navigate("/");
+            } else {
+                setUser({
+                    name: "",
+                    username: "",
+                    password: "",
+                    mob: ""
+                })
+                alert("Username already exists!!");
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
 
@@ -40,14 +73,14 @@ const SignUp = () => {
             <div className="signup-content">
                 <div className="signup-container">
                     <div className="signup-h1"><h1>Create your Avio Account</h1></div>
-                    <form className="signup-form" onSubmit={submitForm}>
+                    <div className="signup-form">
 
                         <div className='name-div'>
-                            <MuiTextField className="input" type="text" onChange={handleChange} label="Username" name="username" value={user.username} />
+                            <MuiTextField className="input" type="text" onChange={handleChange} label="Name" name="name" value={user.name} />
                         </div>
 
                         <div className='name-div'>
-                            <MuiTextField className="input" type="email" onChange={handleChange} label="Email" name="email" value={user.email} />
+                            <MuiTextField className="input" type="email" onChange={handleChange} label="Email" name="username" value={user.username} />
                         </div>
 
                         <div className='name-div'>
@@ -55,11 +88,11 @@ const SignUp = () => {
                         </div>
 
                         <div className='name-div'>
-                            <MuiTextField className="input" type="text" onChange={handleChange} label="Mobile No" name="Mob" value={user.Mob} />
+                            <MuiTextField className="input" type="text" onChange={handleChange} label="Mobile No" name="mob" value={user.mob} />
                         </div>
 
                         <div className='signup-btn-div'>
-                            <Button type="submit" id='signup-btn'>
+                            <Button onClick={submitForm} id='signup-btn'>
                                 Register
                             </Button>
                         </div>
@@ -69,7 +102,7 @@ const SignUp = () => {
                                 Login
                             </span>
                         </div>
-                    </form>
+                    </div>
 
                 </div>
                 <img className="banner-img" src={BannerImg} />

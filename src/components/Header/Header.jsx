@@ -38,7 +38,7 @@ const Header = () => {
                 className={`main-header ${scrolled ? "sticky-header" : ""}`}
             >
                 <div className="header-content">
-                    <div className="centemr" onClick={() => navigate("/")}>
+                    <div className="center" onClick={() => navigate("/")}>
                         AVIOSTORE
                     </div>
                     <ul className="left">

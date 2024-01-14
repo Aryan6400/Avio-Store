@@ -39,10 +39,13 @@
             }
         }
     }
-    .centemr {
-        font-size: 22px;
+    .center {
+        font-size: 19px;
         font-weight: 700;
         cursor: pointer;
+        @media only screen and (min-width: 350px) {
+            font-size: 22px;
+        }
         @include md {
             font-size: 34px;
             position: absolute;
@@ -53,13 +56,22 @@
     .right {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
+        @include sm {
+            gap: 20px;
+        }
         @include md {
             gap: 25px;
         }
         svg {
-            font-size: 20px;
+            font-size: 14px;
             cursor: pointer;
+            @media only screen and (min-width: 350px) {
+                font-size: 16px;
+            }
+            @media only screen and (min-width: 500px) {
+                font-size: 20px;
+            }
             @include md {
                 font-size: 24px;
             }
@@ -84,10 +96,17 @@
         }
         #header-signup-btn {
             color: white;
-            font-size: 15px;
-            padding: 6px;
+            font-size: 12px;
+            padding: 4px;
             text-transform: uppercase;
             cursor: pointer;
+            @media only screen and (min-width: 350px) {
+                font-size: 14px;
+            }
+            @media only screen and (min-width: 500px) {
+                font-size: 15px;
+                padding: 6px;
+            }
             &:hover {
                 opacity: 0.6;
                 border: 0.1px solid #a1a1a1;
@@ -95,10 +114,17 @@
         }
         #header-logout-btn{
             color: white;
-            font-size: 15px;
-            padding: 6px;
+            font-size: 12px;
+            padding: 4px;
             text-transform: uppercase;
             cursor: pointer;
+            @media only screen and (min-width: 350px) {
+                font-size: 14px;
+            }
+            @media only screen and (min-width: 500px) {
+                padding: 6px;
+                font-size: 15px;
+            }
             &:hover {
                 opacity: 0.6;
                 border: 0.1px solid #a1a1a1;

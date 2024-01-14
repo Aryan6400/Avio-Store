@@ -22,13 +22,25 @@
         .banner-img {
             position: relative;
             z-index: 9;
-            width: 200px;
+            width: 280px;
             margin-bottom: 20px;
             @include md {
-                width: 500px;
+                width: 350px;
                 margin-right: 60px;
                 margin-top: 50px;
-                margin-bottom: 0;
+                margin-bottom: 0; 
+            }
+            @media only screen and (max-width: 900px) {
+                width: 300px;
+            }
+            @media only screen and (max-width: 350px) {
+                width: 250px;
+            }
+            @include lg {
+                width: 450px;
+            }
+            @include xl {
+                width: 500px;
             }
             @include xxl {
                 width: 600px;
@@ -52,25 +64,41 @@
                 left: 0;
             }
             h1 {
-                font-size: 80px;
+                font-size: 85px;
                 font-weight: 700;
                 line-height: 1;
                 color: white;
                 margin-bottom: 20px;
                 @include md {
+                    font-size: 120px;
+                }
+                @media only screen and (max-width: 900px) {
+                    font-size: 72px;
+                }
+                @include lg {
                     font-size: 180px;
                 }
             }
             p {
-                max-width: 300px;
+                max-width: 350px;
                 font-size: 14px;
                 line-height: 20px;
                 margin-bottom: 20px;
                 @include md {
+                    max-width: 400px;
+                    font-size: 16px;
+                    line-height: 20px;
+                    margin-bottom: 40px;
+                }
+                @media only screen and (max-width: 900px) {
+                    max-width: 340px;
+                    font-size: 16px;
+                    line-height: 18px;
+                }
+                @include lg {
                     max-width: 500px;
                     font-size: 18px;
                     line-height: 24px;
-                    margin-bottom: 40px;
                 }
             }
             .ctas {
@@ -79,13 +107,17 @@
                 gap: 20px;
                 .banner-cta {
                     text-transform: uppercase;
-                    font-size: 13px;
+                    font-size: 12px;
                     font-weight: 500;
                     width: fit-content;
                     border: 2px solid white;
-                    padding: 10px 20px;
+                    padding: 7.5px 15px;
                     transition: all ease 0.3s;
                     cursor: pointer;
+                    @include sm{
+                        font-size: 13px;
+                        padding: 10px 20px;
+                    }
                     &.v2 {
                         background-color: white;
                         color: black;
