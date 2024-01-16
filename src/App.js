@@ -14,6 +14,7 @@ import Cart from "./components/Cart/Cart";
 import About from "./components/About/About";
 import PrivateComponent from "./components/PrivateComponent";
 import { useAuth } from "./context/AuthContext";
+import SavedForLater from "./components/SavedForLater/SavedForLater";
 
 function App() {
     const {setAuth} = useAuth();
@@ -38,6 +39,7 @@ function App() {
 
                 <Route element={<PrivateComponent />}>
                     <Route path="/cart" element={<Cart />} />
+                    <Route path="/saved" element={<SavedForLater />} />
                 </Route>
             </Routes>
             <Newsletter />

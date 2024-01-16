@@ -23,7 +23,10 @@ const Products = ({ innerPage, headingText }) => {
     }
 
     useEffect(() => {
-        fetchData();
+        const userInfo = JSON.parse(localStorage.getItem("User"));
+        if (userInfo) {
+            fetchData();
+        }
     }, [])
 
     const responsive = {
@@ -38,7 +41,7 @@ const Products = ({ innerPage, headingText }) => {
             slidesToSlide: 3
         },
         tablet: {
-            breakpoint: {max: 800, min: 464},
+            breakpoint: { max: 800, min: 464 },
             items: 3,
             slidesToSlide: 2
         },
@@ -54,7 +57,7 @@ const Products = ({ innerPage, headingText }) => {
             {!innerPage && <div className="sec-heading">{headingText}</div>}
             <Carousel
                 responsive={responsive}
-                // className={`products ${innerPage ? "innerPage" : ""}`}
+            // className={`products ${innerPage ? "innerPage" : ""}`}
             >
                 {data?.map((item) => (
                     <Product

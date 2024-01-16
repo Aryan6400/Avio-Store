@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import "./CartItem.scss";
 import { useNavigate } from "react-router-dom";
@@ -7,14 +7,12 @@ import { useCart } from "../../../context/CartContext";
 
 
 const CartItem = (props) => {
-    const [quantity, setQuantity] = useState(1);
     const [isLoading, setLoading] = useState(false);
-    const { cart, setCart, setSize } = useCart();
+    const { setCart, setSize } = useCart();
     const navigate = useNavigate();
     let discount = (1 - (Number(props.data.price) / Number(props.data.originalPrice))) * 100;
 
     const removeFromCart = async () => {
-        if (quantity) setQuantity(prev => prev - 1);
         const userInfo = JSON.parse(localStorage.getItem("User"));
         setLoading(true);
         try {
@@ -29,7 +27,8 @@ const CartItem = (props) => {
                 redirect: "follow",
                 referrerPolicy: "no-referrer",
                 body: JSON.stringify({
-                    productId: props.data._id
+                    productId: props.data._id,
+                    quantity: 1
                 })
             });
             const result = await response.json();
@@ -43,11 +42,39 @@ const CartItem = (props) => {
     }
 
     const addToCart = async () => {
-        if (quantity) setQuantity(prev => prev - 1);
         const userInfo = JSON.parse(localStorage.getItem("User"));
         setLoading(true);
         try {
             const response = await fetch("https://avio-backend.onrender.com/add-to-cart", {
+                method: "PATCH",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${userInfo.token}`
+                },
+                redirect: "follow",
+                referrerPolicy: "no-referrer",
+                body: JSON.stringify({
+                    productId: props.data._id,
+                    quantity: 1
+                })
+            });
+            const result = await response.json();
+            setCart(result);
+            setSize(result.length);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.error(error);
+        }
+    }
+
+    const addToLater = async() => {
+        const userInfo = JSON.parse(localStorage.getItem("User"));
+        setLoading(true);
+        try {
+            const response = await fetch("https://avio-backend.onrender.com/add-to-later", {
                 method: "PATCH",
                 cache: "no-cache",
                 credentials: "same-origin",
@@ -70,6 +97,7 @@ const CartItem = (props) => {
             console.error(error);
         }
     }
+
 
     return (
         <>
@@ -128,14 +156,14 @@ const CartItem = (props) => {
                                 ?
                                 <div className="quantity-value-box">
                                     <span className="decrease-quantity" onClick={removeFromCart}>-</span>
-                                    <input className="value" value={quantity} onChange={(e) => { setQuantity(Number(e.target.value)) }}></input>
+                                    <input className="value" value={props.quantity}></input>
                                     <span className="increase-quantity" onClick={addToCart}>+</span>
                                 </div>
                                 :
                                 <div></div>}
 
                             <div className="cart-extra-btns">
-                                <div className="btn">Save for later</div>
+                                <div className="btn" onClick={addToLater}>Save for later</div>
                                 <div className="btn">Add to fav</div>
                             </div>
                         </div>
@@ -148,19 +176,3 @@ const CartItem = (props) => {
 };
 
 export default CartItem;
-
-
-
-{/* <div className="cart-quantity-buttons-div">
-    <div className="cart-quantity-buttons">
-        <label>Quantity: </label>
-        <span>
-            <select name="Quantity" id="quantity">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </span>
-    </div>
-</div> */}

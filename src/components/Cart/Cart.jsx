@@ -4,6 +4,7 @@ import CartItemWrapper from "./CartItem/CartItemWrapper";
 import { Backdrop, CircularProgress, Button, Paper } from "@mui/material";
 import "./Cart.scss";
 import { useCart } from "../../context/CartContext";
+import EmptyCart from "./EmptyCart";
 
 
 const Cart = () => {
@@ -45,7 +46,7 @@ const Cart = () => {
             productId: id
         }
         try{
-            const response = await fetch("https://avio-backend.onrender.com/remove-from-cart", {
+            const response = await fetch("https://avio-backend.onrender.com/remove-all-from-cart", {
                 method: "PATCH",
                 cache: "no-cache",
                 credentials: "same-origin",
@@ -56,6 +57,31 @@ const Cart = () => {
                 redirect: "follow",
                 referrerPolicy: "no-referrer",
                 body: JSON.stringify(data),
+            });
+            const result = await response.json();
+            setSize(result.length);
+            setCart(result);
+            setLoading(false);
+        } catch(error){
+            console.error(error);
+            setLoading(false);
+        }
+    }
+
+    const buyProducts = async() => {
+        setLoading(true);
+        const userInfo = JSON.parse(localStorage.getItem("User"));
+        try{
+            const response = await fetch("https://avio-backend.onrender.com/buy-products", {
+                method: "PATCH",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${userInfo.token}`
+                },
+                redirect: "follow",
+                referrerPolicy: "no-referrer",
             });
             const result = await response.json();
             setSize(result.length);
@@ -89,16 +115,16 @@ const Cart = () => {
                         <div className="cart-content">
                             <CartItemWrapper>
                                 {cart.map((item, index) => {
-                                    if (item.status != 'Out of Stock'){
-                                        sprice = sprice + Number(item.price);
-                                        cprice = cprice + Number(item.originalPrice);
-                                        dprice = dprice + Number(item.deliveryCharges);
+                                    if (item.product.status != 'Out of Stock'){
+                                        sprice = sprice + Number(item.product.price)*Number(item.quantity);
+                                        cprice = cprice + Number(item.product.originalPrice)*Number(item.quantity);
+                                        dprice = dprice + Number(item.product.deliveryCharges)*Number(item.quantity);
                                     }
                                     else outOfStock = outOfStock + 1;
                                     return (
                                         <>
                                             {index != 0 ? <hr className="cart-item-separator" /> : null}
-                                            <CartItem key={index} data={item} remove={removeAllFromCart} />
+                                            <CartItem key={index} data={item.product} quantity={item.quantity} remove={removeAllFromCart} />
                                         </>
                                     )
                                 })}
@@ -130,13 +156,11 @@ const Cart = () => {
                                     </div>
                                 </div>
                             </Paper>
-                            <Button id="buy-btn">PROCEED TO BUY</Button>
+                            <Button id="buy-btn" onClick={buyProducts}>BUY PRODUCTS</Button>
                         </div>
                     </div>
                 </> :
-                <>
-                    <h1>Cart empty!</h1>
-                </>
+                <EmptyCart />
             }
         </>
     );

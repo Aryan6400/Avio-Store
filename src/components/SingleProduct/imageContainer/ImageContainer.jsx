@@ -62,7 +62,7 @@ const ImageContainer = ({ urls, id }) => {
                 referrerPolicy: "no-referrer",
                 body: JSON.stringify({
                     productId: id,
-                    count: quantity,
+                    quantity: quantity,
                 })
             });
             setInCart(true);

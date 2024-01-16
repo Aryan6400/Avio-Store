@@ -43,7 +43,6 @@ const Login = () => {
                 body: JSON.stringify(user),
             });
             const result = await response.json();
-
             if (result.user) {
                 const currentTimestamp = new Date();
                 const isoString = currentTimestamp.toISOString();
