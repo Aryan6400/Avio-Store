@@ -1,0 +1,48 @@
+@import "../../css-config/mixins.scss";
+
+.about{
+  .row{
+    .columns{
+      margin: auto;
+      width: 100%;
+      display: block;
+      margin-bottom: 16px;
+      padding: 0 8px;
+
+      @include sm{
+        width: 33.3%;     
+      }
+
+      .cards {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: 100%;
+        border-radius: 5px;
+        
+        .images {
+          width: 100%;
+        }
+
+        .container{
+          padding: 5px;
+          
+          .buttons {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            
+            &:hover {
+              background-color: #555;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
