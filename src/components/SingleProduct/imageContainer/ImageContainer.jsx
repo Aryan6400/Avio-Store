@@ -117,7 +117,7 @@ const ImageContainer = ({ urls, id }) => {
             </Backdrop>
             <div className="single-product-img-container">
                 <div className="selected-image-to-view">
-                    <img src={selectedImg ? selectedImg : urls[0]} />
+                    <img src={selectedImg ? selectedImg : urls[0]} loading="lazy" />
                     <div>Hover over image to zoom in</div>
                 </div>
                 <div className="product-page-carousel">
@@ -125,7 +125,7 @@ const ImageContainer = ({ urls, id }) => {
                         {urls.map((url, index) => {
                             return (
                                 <div className="carousel-small-img">
-                                    <img src={url} className={url == selectedImg ? "selected-product-img" : null} onMouseEnter={() => { handleHover(index) }} />
+                                    <img src={url} loading="lazy" className={url == selectedImg ? "selected-product-img" : null} onMouseEnter={() => { handleHover(index) }} />
                                 </div>
                             )
                         })}

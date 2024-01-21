@@ -90,7 +90,6 @@ const Login = () => {
                             </span>
                         </div>
                     </div>
-
                 </div>
                 <img className="banner-img" src={BannerImg} />
             </div>

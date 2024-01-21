@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
+import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import "./Header.scss";
 import { useAuth } from "../../context/AuthContext";
 import Search from "./Search/Search";
@@ -44,12 +45,13 @@ const Header = () => {
                     <ul className="left">
                         <li onClick={() => navigate("/")}>Home</li>
                         <li onClick={() => navigate("/about")}>About</li>
-                        <li>Categories</li>
+                        <li onClick={() => navigate("/category")}>Categories</li>
                     </ul>
 
                     <div className="right">
                         <TbSearch onClick={() => setSearchModal(true)} />
-                        <AiOutlineHeart />
+                        <AiOutlineHeart onClick={()=>navigate("/favourites")} />
+                        <SavedSearchIcon onClick={()=>navigate("/saved")} />
                         <span
                             className="cart-icon"
 

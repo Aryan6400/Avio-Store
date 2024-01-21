@@ -5,14 +5,15 @@ import Aryan from "../../assets/aryan.JPG";
 const About = () => {
     return (
         <div className="about">
-            <center><h1 style={{ paddingTop: "20px" }}>Meet The Team</h1>
+            <center>
+                <h1 style={{ paddingTop: "20px" }}>Meet The Team</h1>
             </center>
             <br />
 
             <div class="row">
                 <div class="columns">
                     <div class="cards">
-                        <img class="images" src={Aryan} alt="Jane" />
+                        <img class="images" loading="lazy" src={Aryan} alt="Jane" />
                         <div class="container">
                             <h2>Aryan Singh</h2>
                             <p>BTech Indian Institute of Technology Kharagpur</p>

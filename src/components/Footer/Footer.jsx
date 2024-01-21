@@ -20,16 +20,16 @@ const Footer = () => {
                     <div className="c-item">
                         <FaLocationArrow />
                         <div className="text">
-                        Flat-No:- E-40, Building-Dhanraj house, Road/Street-Yamuna marg, Village/Town:- Jaipur, Block:- Prem nagar, City:- Jaipur, JAIPUR, RAJASTHAN-302012        
+                        Vidyasagar Hall of Residence, Indian Institute of Technology Kharagpur, 721302, West Medinipur
                         </div>
                     </div>
                     <div className="c-item">
                         <FaMobileAlt />
-                        <div className="text">Phone: +918824838600</div>
+                        <div className="text">Phone: +917033099577</div>
                     </div>
                     <div className="c-item">
                         <FaEnvelope />
-                        <div className="text">Email: avioliittoenterprises@gmail.com</div>
+                        <div className="text">Email: singharyan7481@gmail.com</div>
                     </div>
                 </div>
                 <div className="col">
@@ -54,9 +54,9 @@ const Footer = () => {
             <div className="bottom-bar">
                 <div className="bottom-bar-content">
                     <span className="text">
-                    AVIOLIITTO ENTERPRISES, JAIPUR, RAJASTHAN-302012 <br /> UDYAM-RJ-17-0211648 © 2023   
+                    Aryan Singh, Kharagpur, West Bengal-721302 <br /> © 2024   
                     </span>
-                    <img src={Payment} />
+                    <img loading="lazy" src={Payment} />
                 </div>
             </div>
         </div>

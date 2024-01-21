@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Newsletter from "./components/Footer/Newsletter/Newsletter";
 import PrivateComponent from "./components/PrivateComponent";
+import Favourite from "./components/Favourite/Favourite";
 
 const Cart = lazy(() => import("./components/Cart/Cart"));
 const Home = lazy(() => import("./components/Home/Home"));
@@ -35,7 +36,7 @@ function App() {
                     <Suspense fallback={<p>Loading...</p>}>
                         <Home />
                     </Suspense>} />
-                <Route path="/category/:id" element={
+                <Route path="/category" element={
                     <Suspense fallback={<p>Loading...</p>}>
                         <Category />
                     </Suspense>} />
@@ -55,8 +56,6 @@ function App() {
                     <Suspense fallback={<p>Loading...</p>}>
                         <About />
                     </Suspense>} />
-
-
                 <Route element={<PrivateComponent />}>
                     <Route path="/cart" element={
                         <Suspense fallback={<p>Loading...</p>}>
@@ -66,6 +65,11 @@ function App() {
                     <Route path="/saved" element={
                         <Suspense fallback={<p>Loading...</p>}>
                             <SavedForLater />
+                        </Suspense>
+                    } />
+                    <Route path="/favourites" element={
+                        <Suspense fallback={<p>Loading...</p>}>
+                            <Favourite />
                         </Suspense>
                     } />
                 </Route>

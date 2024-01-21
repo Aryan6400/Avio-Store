@@ -15,6 +15,7 @@ const Product = ({ data }) => {
                     src={
                         data.img_url[0]
                     }
+                    loading="lazy"
                 />
             </div>
             <div className="prod-details">

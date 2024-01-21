@@ -2,7 +2,7 @@
 .category-main-content {
     margin: 30px 0;
     @include md {
-        margin: 75px 0;
+        margin: 45px 0;
     }
     .layout {
         max-width: calc(100% - 20px);
@@ -10,17 +10,53 @@
         @include md {
             max-width: 1200px;
         }
-    }
-    .category-title {
-        font-size: 24px;
-        @include md {
-            font-size: 34px;
+
+        .category-hr{
+            width: 100%;
+            margin-bottom: 2rem;
+            border-color: #8e2de2;
         }
-    }
-    .products-container {
-        margin: 20px 0;
-        @include md {
-            margin: 50px 0;
+
+        .category-title {
+            font-weight: 500;
+            text-transform: uppercase;
+            padding: 10px 0;
+            margin-bottom: 1rem;
+            font-size: 24px;
+            @include md {
+                font-size: 34px;
+            }
+        }
+
+        .primary-category-box{
+            padding-left: 1rem;
+            @include md{
+                padding-left: 2rem;
+            }
+    
+            h2{
+                font-size: 2rem;
+                font-weight: 500;
+                margin-bottom: -1.5rem;
+                &:after {
+                    content: "";
+                    display: block;
+                    margin-top: 5px;
+                    width: 50px;
+                    height: 3px;
+                    background-color: #8e2de2;
+                    @include md {
+                        margin-top: 10px;
+                    }
+                }
+            }
+    
+            .secondary-category-box{
+                padding-left: 1rem;
+                @include md{
+                    padding-left: 2rem;
+                }
+            }
         }
     }
 }

@@ -98,6 +98,31 @@ const CartItem = (props) => {
         }
     }
 
+    const addToFav = async() => {
+        const userInfo = JSON.parse(localStorage.getItem("User"));
+        setLoading(true);
+        try {
+            await fetch("https://avio-backend.onrender.com/add-to-fav", {
+                method: "PATCH",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${userInfo.token}`
+                },
+                redirect: "follow",
+                referrerPolicy: "no-referrer",
+                body: JSON.stringify({
+                    productId: props.data._id,
+                })
+            });
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.error(error);
+        }
+    }
+
 
     return (
         <>
@@ -110,7 +135,7 @@ const CartItem = (props) => {
             <div className="cart-products">
                 <div className="cart-item">
                     <div className="cart-item-image-div">
-                        <img src={props.data.img_url} onClick={() => { navigate(`/product/${props.data._id}`) }} className="cart-item-image" alt="Product Image"></img>
+                        <img src={props.data.img_url} loading="lazy" onClick={() => { navigate(`/product/${props.data._id}`) }} className="cart-item-image" alt="Product Image"></img>
                     </div>
                     <div className="prod-details">
 
@@ -156,7 +181,7 @@ const CartItem = (props) => {
                                 ?
                                 <div className="quantity-value-box">
                                     <span className="decrease-quantity" onClick={removeFromCart}>-</span>
-                                    <input className="value" value={props.quantity}></input>
+                                    <input className="value" readOnly value={props.quantity}></input>
                                     <span className="increase-quantity" onClick={addToCart}>+</span>
                                 </div>
                                 :
@@ -164,7 +189,7 @@ const CartItem = (props) => {
 
                             <div className="cart-extra-btns">
                                 <div className="btn" onClick={addToLater}>Save for later</div>
-                                <div className="btn">Add to fav</div>
+                                <div className="btn" onClick={addToFav}>Add to fav</div>
                             </div>
                         </div>
 

@@ -1,19 +1,19 @@
 @import "../../css-config/mixins.scss";
 
-.saved-section{
+.favourite-section{
     max-width: calc(100% - 20px);
     margin: 3rem;
     @include lg {
         margin: 50px auto;
     }
 
-    .saved-heading{
+    .fav-heading{
         width: 100%;
         @include lg{
             padding: 0 40px;
         }
 
-        .saved-title{
+        .favourites-title{
             font-weight: 500;
             text-transform: uppercase;
             padding: 10px 0px;
@@ -26,7 +26,7 @@
             }
         }
     
-        .saved-hr{
+        .favourites-hr{
             max-width: 1200px;
             margin: auto;
             margin-bottom: 2rem;
@@ -34,8 +34,16 @@
         }
     }
 
-    .saved-container{
-        display: flex;
-        flex-direction: column;
+    .favourites-container{
+        width: 100%;
+        @include lg{
+            padding: 0 40px;
+        }
+        .favourites-box{
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+            max-width: 1200px;
+        }
     }
 }

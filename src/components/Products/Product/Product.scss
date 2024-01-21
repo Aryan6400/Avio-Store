@@ -2,6 +2,7 @@
 .product-card {
     cursor: pointer;
     margin: 0 5px 20px;
+    max-width: 210px;
     @media only screen and (min-width: 500px) {
         margin: 0 15px 20px;
     }

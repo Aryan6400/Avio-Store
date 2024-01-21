@@ -4,29 +4,34 @@ import { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const Products = ({ innerPage, headingText }) => {
+const Products = (props) => {
     const [data, setData] = useState([]);
 
-    const fetchData = async () => {
-        const response = await fetch('https://avio-backend.onrender.com/all-products', {
-            method: "GET",
-            cache: "no-cache",
-            credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            redirect: "follow",
-            referrerPolicy: "no-referrer",
-        });
-        const result = await response.json();
-        setData(result);
+    const fetchData = async (primaryCategory, secondaryCategory) => {
+        try {
+            const response = await fetch(`https://avio-backend.onrender.com/all-products?primaryCategory=${primaryCategory}&secondaryCategory=${secondaryCategory}`, {
+                method: "GET",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                redirect: "follow",
+                referrerPolicy: "no-referrer",
+            });
+            const result = await response.json();
+            setData(result);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {
-        const userInfo = JSON.parse(localStorage.getItem("User"));
-        if (userInfo) {
-            fetchData();
-        }
+        let primaryCategory = "None";
+        let secondaryCategory = "None";
+        if (props.primaryCategory) primaryCategory = props.primaryCategory;
+        if (props.secondaryCategory) secondaryCategory = props.secondaryCategory;
+        fetchData(primaryCategory, secondaryCategory);
     }, [])
 
     const responsive = {
@@ -54,14 +59,13 @@ const Products = ({ innerPage, headingText }) => {
 
     return (
         <div className="products-container">
-            {!innerPage && <div className="sec-heading">{headingText}</div>}
+            <div className="sec-heading">{props.headingText}</div>
             <Carousel
                 responsive={responsive}
-            // className={`products ${innerPage ? "innerPage" : ""}`}
             >
                 {data?.map((item) => (
                     <Product
-                        key={item.id}
+                        key={item._id}
                         data={item}
                     />
                 ))}
